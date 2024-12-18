@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Financial.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #5c6370; font-style: italic;}
+.s3 { color: #89ca78;}
+.s4 { color: #d19a66;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Financial.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pandas </span><span class="s0">as </span><span class="s1">pd</span>
+<span class="s0">import </span><span class="s1">matplotlib.pyplot </span><span class="s0">as </span><span class="s1">plt</span>
+
+
+<span class="s2"># Made the dictionary for financial transaction</span>
+<span class="s1">data = {</span>
+    <span class="s3">'ID'</span><span class="s1">:[</span><span class="s4">4524</span><span class="s1">,</span><span class="s4">2731</span><span class="s1">,</span><span class="s4">3701</span><span class="s1">,</span><span class="s4">42</span><span class="s1">,</span><span class="s4">4659</span><span class="s1">,</span><span class="s4">4537</span><span class="s1">,</span><span class="s4">1278</span><span class="s1">,</span><span class="s4">3687</span><span class="s1">,</span><span class="s4">3465</span><span class="s1">,</span><span class="s4">3754</span><span class="s1">,</span><span class="s4">5144</span><span class="s1">,</span><span class="s4">2029</span><span class="s1">,</span><span class="s4">2379</span><span class="s1">,</span><span class="s4">2732</span><span class="s1">,</span><span class="s4">4706</span><span class="s1">,</span><span class="s4">281</span><span class="s1">,</span><span class="s4">1105</span><span class="s1">,</span><span class="s4">2314</span><span class="s1">],</span>
+    <span class="s3">'Client_Card'</span><span class="s1">:[</span><span class="s4">765</span><span class="s1">,</span><span class="s4">825</span><span class="s1">,</span><span class="s4">825</span><span class="s1">,</span><span class="s4">1174</span><span class="s1">,</span><span class="s4">1265</span><span class="s1">,</span><span class="s4">1123</span><span class="s1">,</span><span class="s4">2345</span><span class="s1">,</span><span class="s4">985</span><span class="s1">,</span><span class="s4">1000</span><span class="s1">,</span><span class="s4">1746</span><span class="s1">,</span><span class="s4">1718</span><span class="s1">,</span><span class="s4">1718</span><span class="s1">,</span><span class="s4">1345</span><span class="s1">,</span><span class="s4">708</span><span class="s1">,</span><span class="s4">68</span><span class="s1">,</span><span class="s4">192</span><span class="s1">,</span><span class="s4">58</span><span class="s1">,</span><span class="s4">166</span><span class="s1">],</span>
+    <span class="s3">'Card_Brand'</span><span class="s1">:[</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span>
+                  <span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">,</span><span class="s3">'mastercard'</span><span class="s1">,</span><span class="s3">'visa'</span><span class="s1">],</span>
+    <span class="s3">'card_type'</span><span class="s1">:[</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span>
+                 <span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'debit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">,</span><span class="s3">'credit'</span><span class="s1">],</span>
+    <span class="s3">'#card_number'</span><span class="s1">:[</span><span class="s4">4344676511950444</span><span class="s1">,</span><span class="s4">4956965974959986</span><span class="s1">,</span><span class="s4">4582313478255491</span><span class="s1">,</span><span class="s4">4879494103069057</span><span class="s1">,</span><span class="s4">5722874738736011</span><span class="s1">,</span><span class="s4">4404898874682993</span><span class="s1">,</span>
+                    <span class="s4">4001482973848631</span><span class="s1">,</span><span class="s4">5627220683410948</span><span class="s1">,</span><span class="s4">5711382187309326</span><span class="s1">,</span><span class="s4">5766121508358701</span><span class="s1">,</span><span class="s4">5495199163052054</span><span class="s1">,</span><span class="s4">5804499644308599</span><span class="s1">,</span><span class="s4">5766352389579834</span><span class="s1">,</span>
+                    <span class="s4">4242015583697294</span><span class="s1">,</span><span class="s4">5191030913182493</span><span class="s1">,</span><span class="s4">4017261190134817</span><span class="s1">,</span><span class="s4">5581970288727991</span><span class="s1">,</span><span class="s4">4032240655674503</span><span class="s1">],</span>
+    <span class="s3">'expires'</span><span class="s1">:[</span><span class="s3">'12/2022'</span><span class="s1">,</span><span class="s3">'12/2020'</span><span class="s1">,</span><span class="s3">'02/2024'</span><span class="s1">,</span><span class="s3">'08/2024'</span><span class="s1">,</span><span class="s3">'03/2009'</span><span class="s1">,</span><span class="s3">'09/2003'</span><span class="s1">,</span><span class="s3">'07/2022'</span><span class="s1">,</span><span class="s3">'06/2022'</span><span class="s1">,</span><span class="s3">'11/2020'</span><span class="s1">,</span><span class="s3">'02/2023'</span><span class="s1">,</span><span class="s3">'07/2023'</span><span class="s1">,</span><span class="s3">'04/2015'</span><span class="s1">,</span>
+               <span class="s3">'05/2019'</span><span class="s1">,</span><span class="s3">'03/2002'</span><span class="s1">,</span><span class="s3">'06/2007'</span><span class="s1">,</span><span class="s3">'08/2021'</span><span class="s1">,</span><span class="s3">'07/2024'</span><span class="s1">,</span><span class="s3">'08/2017'</span><span class="s1">],</span>
+    <span class="s3">'has_chip'</span><span class="s1">:[</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'Yes'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">,</span><span class="s3">'No'</span><span class="s1">],</span>
+    <span class="s3">'num_card_issues'</span><span class="s1">:[</span><span class="s4">1</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">1</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">2</span><span class="s1">,</span><span class="s4">1</span><span class="s1">],</span>
+    <span class="s3">'credit_limit'</span><span class="s1">:[</span><span class="s4">12000</span><span class="s1">,</span><span class="s4">53543</span><span class="s1">,</span><span class="s4">8950</span><span class="s1">,</span><span class="s4">7113</span><span class="s1">,</span><span class="s4">77</span><span class="s1">,</span><span class="s4">65</span><span class="s1">,</span><span class="s4">30400</span><span class="s1">,</span><span class="s4">9500</span><span class="s1">,</span><span class="s4">11261</span><span class="s1">,</span><span class="s4">1000</span><span class="s1">,</span><span class="s4">4980</span><span class="s1">,</span><span class="s4">22000</span><span class="s1">,</span><span class="s4">7643</span><span class="s1">,</span><span class="s4">75</span><span class="s1">,</span><span class="s4">26019</span><span class="s1">,</span><span class="s4">3219</span><span class="s1">,</span><span class="s4">45000</span><span class="s1">,</span><span class="s4">28912</span><span class="s1">]</span>
+<span class="s1">}</span>
+<span class="s1">df = pd.DataFrame(data)</span>
+<span class="s1">print(df)</span>
+
+<span class="s2">#This is the section where I want change my data to make it easier to read by looking at the columns</span>
+<span class="s1">print(df.rename(columns={</span><span class="s3">'#card_number' </span><span class="s1">: </span><span class="s3">'card_number'</span><span class="s1">}, inplace=</span><span class="s0">True</span><span class="s1">))</span>
+<span class="s1">print(df.rename(columns={</span><span class="s3">'expires' </span><span class="s1">: </span><span class="s3">'expiration_date'</span><span class="s1">},inplace = </span><span class="s0">True</span><span class="s1">))</span>
+<span class="s1">print(df.rename(columns={</span><span class="s3">'num_card_issues' </span><span class="s1">: </span><span class="s3">'card_issues'</span><span class="s1">}, inplace = </span><span class="s0">True</span><span class="s1">))</span>
+<span class="s1">print(df)</span>
+
+<span class="s1">df[</span><span class="s3">'expiration_date'</span><span class="s1">] = pd.to_datetime(df[</span><span class="s3">'expiration_date'</span><span class="s1">], format = </span><span class="s3">'%m/%Y'</span><span class="s1">, errors=</span><span class="s3">'coerce'</span><span class="s1">)</span>
+
+<span class="s1">print(df[</span><span class="s3">'card_number'</span><span class="s1">])</span>
+<span class="s1">print(df[</span><span class="s3">'expiration_date'</span><span class="s1">])</span>
+<span class="s1">print(df[</span><span class="s3">'card_issues'</span><span class="s1">])</span>
+<span class="s1">print(df[</span><span class="s3">'credit_limit'</span><span class="s1">])</span>
+
+<span class="s1">Brand_count = df[</span><span class="s3">'Card_Brand'</span><span class="s1">].value_counts()</span>
+<span class="s1">print(Brand_count)</span>
+<span class="s1">Credit_count = df[</span><span class="s3">'credit_limit'</span><span class="s1">].value_counts()</span>
+<span class="s1">print(Credit_count)</span>
+
+<span class="s1">average_credit_limit = df.groupby(</span><span class="s3">'card_type'</span><span class="s1">)[</span><span class="s3">'credit_limit'</span><span class="s1">].mean()</span>
+<span class="s1">print(average_credit_limit)</span>
+
+<span class="s1">plt.hist(df[</span><span class="s3">'credit_limit'</span><span class="s1">], bins=</span><span class="s4">50</span><span class="s1">,color = </span><span class="s3">'purple'</span><span class="s1">, alpha = </span><span class="s4">0.8</span><span class="s1">)</span>
+<span class="s1">plt.title(</span><span class="s3">'Distribution of Credit Limits'</span><span class="s1">)</span>
+<span class="s1">plt.xlabel(</span><span class="s3">'Credit Limit'</span><span class="s1">)</span>
+<span class="s1">plt.ylabel(</span><span class="s3">'Average Credit Limit Frequency'</span><span class="s1">)</span>
+<span class="s1">plt.show()</span>
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>
